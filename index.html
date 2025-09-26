@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Happy Birthday Nannu - Chocolate Lava Theme</title>
+<style>
+  @keyframes lavaFlow {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 100% 100%;
+    }
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-image: url('https://user-gen-media-assets.s3.amazonaws.com/seedream_images/96440233-2d56-47d1-aadc-75dcf172a104.png');
+    background-size: 200% 200%;
+    background-repeat: repeat;
+    animation: lavaFlow 15s linear infinite;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #FFF8E1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+    box-sizing: border-box;
+  }
+
+  h1 {
+    font-size: 3.5em;
+    text-shadow: 3px 3px 8px #1e0c00;
+    margin: 0 0 20px 0;
+    user-select: none;
+  }
+
+  .main-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
+  .cake-container {
+    position: relative;
+    cursor: default;
+    user-select: none;
+  }
+
+  .cake {
+    width: 180px;
+    height: 180px;
+    background: linear-gradient(135deg, #4B2E0D 0%, #7C4B19 50%, #3E2207 100%);
+    border-radius: 50% / 40%;
+    box-shadow:
+      inset 0 10px 15px #6E4B28,
+      0 6px 10px rgba(0,0,0,0.6);
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  /* Cake layers */
+  .layer {
+    position: absolute;
+    width: 150px;
+    height: 35px;
+    border-radius: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom, #8B4513 0%, #5E3411 100%);
+    box-shadow: inset 0 4px 7px rgba(255, 255, 255, 0.25);
+  }
+
+  .layer1 { top: 120px; }
+  .layer2 { top: 85px; }
+  .layer3 { top: 50px; }
+
+  /* Candle */
+  .candle {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 50px;
+    background: #FF6F61;
+    border-radius: 3px;
+    box-shadow: 0 0 8px 2px #FF8A71;
+  }
+
+  .flame {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 20px;
+    background: radial-gradient(circle at 50% 30%, #FFD700, #FF8C00 65%, transparent 90%);
+    border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+    filter: drop-shadow(0 0 4px #FFC107);
+    animation: flicker 1.5s infinite alternate ease-in-out;
+  }
+
+  @keyframes flicker {
+    0% {transform: translateX(-50%) scale(1);}
+    100% {transform: translateX(-48%) scale(1.1);}
+  }
+
+  .flame.off {
+    opacity: 0;
+    animation: none;
+  }
+
+  /* Hamster container */
+  .hamster-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    width: 90px;
+  }
+
+  .hamster {
+    font-size: 75px;
+    filter: drop-shadow(0 4px 3px #321900);
+    transition: transform 0.3s ease;
+  }
+  .hamster:active {
+    transform: scale(0.95);
+  }
+
+  .hamster-text {
+    font-size: 1rem;
+    margin-top: 10px;
+    color: #FFD966;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px #6B4313;
+    text-align: center;
+  }
+
+  /* Letter message box - big */
+  .letter {
+    margin-top: 50px;
+    background: #4b2808;
+    border-radius: 22px;
+    box-shadow: inset 10px 14px 25px #6e4b28;
+    padding: 40px 40px;
+    max-width: 700px;
+    color: #f4e7c3;
+    font-size: 1.8rem;
+    line-height: 1.7;
+    font-family: 'Georgia', serif;
+    white-space: pre-wrap;
+  }
+</style>
+</head>
+<body>
+
+<h1>🎂 Happy Birthday Nannu! 🎉</h1>
+
+<div class="main-container">
+  <div class="cake-container" title="Cake">
+    <div class="cake" id="cake">
+      <div class="layer layer3"></div>
+      <div class="layer layer2"></div>
+      <div class="layer layer1"></div>
+      <div class="candle" id="candle">
+        <div class="flame" id="flame"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hamster-container" id="hamster" title="Blow the candles!">
+    <div class="hamster" role="img" aria-label="Hamster">🐹</div>
+    <div class="hamster-text">Blow the candles</div>
+  </div>
+</div>
+
+<div class="letter" aria-label="Birthday message">
+  Dear Nannu,
+
+  On this special day, may your life be as rich and sweet as chocolate cake, filled with love, laughter, and endless happiness.
+
+  Wishing you a wonderful year ahead. Happy birthday once again!
+
+  With all my love,  
+  [Your Name]
+</div>
+
+<script>
+  const hamster = document.getElementById('hamster');
+  const flame = document.getElementById('flame');
+
+  hamster.addEventListener('click', () => {
+    if (!flame.classList.contains('off')) {
+      flame.classList.add('off');
+    }
+  });
+</script>
+
+</body>
+</html>
